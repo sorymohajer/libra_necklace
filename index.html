@@ -2,717 +2,512 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>منصة باقات الانترنت - Libra Necklace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#08090d" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>باقات الإنترنت - Libra Necklace</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-dark: #0c0c0f;
-      --panel: #161620;
-      --panel-2: #1f1f2e;
-      --gold: #f8d470;
-      --gold-2: #f2b705;
-      --text: #e7e7ef;
-      --muted: #a8a8c4;
-      --success: #54d18f;
-      --danger: #ff7b7b;
-      --info: #73b8ff;
-      --card-radius: 20px;
-      --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      --bg: #08090d;
+      --card: #0f1118;
+      --card-2: #171a24;
+      --accent: #f3b41a;
+      --accent-2: #fdd574;
+      --muted: #9aa0b5;
+      --text: #f8f9ff;
+      --success: #43d28f;
+      --danger: #ff6b7b;
+      --info: #65b7ff;
+      --radius: 18px;
+      --shadow: 0 16px 34px rgba(0, 0, 0, 0.45);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at 20% 20%, rgba(248, 212, 112, 0.05), transparent 25%),
-        radial-gradient(circle at 80% 10%, rgba(242, 183, 5, 0.07), transparent 20%),
-        #0a0a0e;
+      background: radial-gradient(circle at 20% 0%, rgba(243, 180, 26, 0.08), transparent 30%),
+        radial-gradient(circle at 90% 10%, rgba(101, 183, 255, 0.05), transparent 25%),
+        var(--bg);
       color: var(--text);
       min-height: 100vh;
-      padding: 24px;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    .app {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: calc(18px + env(safe-area-inset-top, 0px)) 18px 110px;
     }
 
     header {
+      background: linear-gradient(160deg, rgba(243, 180, 26, 0.16), rgba(15, 17, 24, 0.9)), url('pack.jpg') center/cover;
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--shadow);
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 24px;
+      flex-direction: column;
+      gap: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .brand img {
-      width: 62px;
-      height: 62px;
-      border-radius: 18px;
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.28);
+      box-shadow: 0 0 24px rgba(243, 180, 26, 0.35);
       object-fit: cover;
-      border: 2px solid rgba(248, 212, 112, 0.4);
-      box-shadow: 0 0 20px rgba(248, 212, 112, 0.3);
     }
 
-    .brand h1 {
-      font-size: 24px;
-      line-height: 1.3;
-    }
+    h1 { font-size: 20px; }
+    .tagline { color: var(--accent-2); font-weight: 700; }
 
+    .meta-row { display: flex; gap: 8px; flex-wrap: wrap; }
     .pill {
-      padding: 10px 14px;
-      background: linear-gradient(135deg, rgba(248, 212, 112, 0.14), rgba(242, 183, 5, 0.18));
-      border: 1px solid rgba(248, 212, 112, 0.28);
-      border-radius: 14px;
-      color: var(--gold);
-      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 13px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
     }
 
     .nav-tabs {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 10;
+      background: rgba(8, 9, 13, 0.92);
+      backdrop-filter: blur(10px);
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .nav-btn {
-      padding: 14px 16px;
-      background: var(--panel);
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 8px;
+      margin: 16px 0;
+      padding: 8px;
+      border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 14px;
-      color: var(--muted);
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      transition: 0.25s ease;
-    }
-
-    .nav-btn.active,
-    .nav-btn:hover {
-      background: linear-gradient(135deg, rgba(248, 212, 112, 0.18), rgba(242, 183, 5, 0.08));
-      color: var(--text);
-      border-color: rgba(248, 212, 112, 0.32);
     }
 
     .grid {
       display: grid;
-      gap: 16px;
+      gap: 12px;
     }
 
-    .grid.cols-3 {
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    .nav-btn {
+      padding: 12px 10px;
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      transition: 0.2s ease;
     }
+
+    .nav-btn.active {
+      background: linear-gradient(135deg, rgba(243, 180, 26, 0.22), rgba(101, 183, 255, 0.18));
+      color: var(--text);
+      border-color: rgba(243, 180, 26, 0.4);
+    }
+
+    .section { display: none; }
+    .section.active { display: grid; gap: 12px; }
+
+    .section-title { font-weight: 700; margin-bottom: 4px; }
+    .subtext { color: var(--muted); font-size: 13px; }
 
     .card {
-      background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
-      border-radius: var(--card-radius);
+      background: linear-gradient(180deg, var(--card) 0%, var(--card-2) 100%);
+      padding: 14px;
+      border-radius: var(--radius);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 18px;
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
     }
 
-    .card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 20% 20%, rgba(248, 212, 112, 0.14), transparent 40%);
-      opacity: 0.6;
-      pointer-events: none;
-    }
+    .card::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 15% 20%, rgba(243, 180, 26, 0.12), transparent 35%); opacity: 0.7; pointer-events: none; }
 
-    .card h3 {
-      margin-bottom: 8px;
-    }
+    .company-card, .package-card { display: grid; gap: 6px; }
+    .company-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .badge { padding: 6px 10px; border-radius: 10px; font-size: 12px; background: rgba(255, 255, 255, 0.08); }
 
-    .card p {
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .chip { padding: 8px 10px; border-radius: 12px; background: rgba(255, 255, 255, 0.06); color: var(--text); font-size: 12px; border: 1px solid transparent; cursor: pointer; }
+    .chip.active { border-color: rgba(243, 180, 26, 0.5); }
 
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 10px;
-      background: rgba(248, 212, 112, 0.14);
-      color: var(--gold);
-      border: 1px solid rgba(248, 212, 112, 0.24);
-      margin-left: 6px;
-    }
-
-    .company-logo {
-      width: 48px;
-      height: 48px;
+    input, select, textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
-      object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.14);
-      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      padding: 10px 12px;
+      font-family: inherit;
+      margin: 6px 0 10px;
     }
 
-    .flex-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    textarea { min-height: 80px; resize: vertical; }
 
     .btn {
+      width: 100%;
+      background: linear-gradient(135deg, #f3b41a, #fdd574);
       border: none;
-      outline: none;
-      background: linear-gradient(135deg, #f8d470, #f2b705);
-      color: #0b0b0f;
-      font-weight: 800;
-      padding: 12px 18px;
-      border-radius: 14px;
-      cursor: pointer;
-      transition: 0.2s ease;
-      box-shadow: 0 10px 24px rgba(248, 212, 112, 0.25);
-    }
-
-    .btn.secondary {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      box-shadow: none;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .pill-section {
-      display: inline-flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .section-title {
-      margin: 18px 0 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .price {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--gold);
-    }
-
-    .subtext {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .chip {
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      color: var(--muted);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .status {
-      padding: 6px 10px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-left: 8px;
-    }
-
-    .status.new { background: rgba(115, 184, 255, 0.12); color: var(--info); border: 1px solid rgba(115, 184, 255, 0.3);}    
-    .status.progress { background: rgba(248, 212, 112, 0.14); color: var(--gold); border: 1px solid rgba(248, 212, 112, 0.34);}    
-    .status.done { background: rgba(84, 209, 143, 0.14); color: var(--success); border: 1px solid rgba(84, 209, 143, 0.3);}    
-
-    .input {
-      width: 100%;
+      color: #111;
       padding: 12px 14px;
-      margin-top: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
-      color: var(--text);
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(243, 180, 26, 0.35);
     }
 
-    label { font-weight: 700; color: var(--muted); display: block; margin-top: 12px; }
+    .btn.secondary { background: rgba(255, 255, 255, 0.08); color: var(--text); box-shadow: none; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .btn.inline { width: auto; padding: 10px 12px; }
 
-    .section {
-      display: none;
-    }
-
-    .section.active { display: block; }
-
-    .divider {
-      height: 1px;
-      width: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
-      margin: 16px 0;
-    }
+    .table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+    .table th, .table td { padding: 8px; text-align: right; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+    .table th { color: var(--muted); font-weight: 700; }
 
     .floating-action {
       position: fixed;
-      bottom: 16px;
-      left: 16px;
-      display: flex;
-      gap: 10px;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      max-width: 480px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      padding: 10px 18px 6px;
+      background: linear-gradient(180deg, rgba(8, 9, 13, 0.1), rgba(8, 9, 13, 0.95));
+      backdrop-filter: blur(8px);
     }
 
-    .copy-box {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px dashed rgba(248, 212, 112, 0.35);
-      color: var(--gold);
-      padding: 12px 14px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 10px;
-    }
+    .divider { height: 1px; background: rgba(255, 255, 255, 0.07); margin: 10px 0; }
 
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 12px;
-    }
+    .tag { padding: 4px 8px; border-radius: 10px; font-size: 11px; color: #111; background: var(--accent-2); font-weight: 700; }
+    .pill.success { background: rgba(67, 210, 143, 0.15); border-color: rgba(67, 210, 143, 0.4); color: var(--success); }
+    .pill.info { background: rgba(101, 183, 255, 0.15); border-color: rgba(101, 183, 255, 0.35); color: var(--info); }
 
-    .table th, .table td {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 10px 8px;
-      text-align: right;
-      color: var(--muted);
-    }
+    .thumb { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); }
 
-    .table th { color: var(--text); font-weight: 800; }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 8px;
-      border-radius: 10px;
-      font-size: 12px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .alert {
-      padding: 12px 14px;
-      border-radius: 12px;
-      background: rgba(115, 184, 255, 0.12);
-      border: 1px solid rgba(115, 184, 255, 0.3);
-      color: var(--text);
-      margin-top: 10px;
-    }
-
-    @media (max-width: 720px) {
-      body { padding: 14px; }
-      header { flex-direction: column; align-items: flex-start; }
-      .brand { width: 100%; }
+    @media (max-width: 420px) {
+      header { padding: 14px; }
+      h1 { font-size: 18px; }
+      .nav-tabs { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/logo1.png" alt="Libra Necklace" />
-      <div>
-        <h1>منصة باقات الإنترنت</h1>
-        <div class="pill">Flex Zone — عروض خاصة لكل الشركات</div>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <img src="logo1.png" alt="Libra" />
+        <div>
+          <h1>باقات الإنترنت - Flex Zone</h1>
+          <div class="tagline">متجر موبايل جاهز للويب فيو</div>
+        </div>
       </div>
-    </div>
-    <div class="pill" style="background: rgba(84,209,143,0.18); border-color: rgba(84,209,143,0.4); color: var(--success);">
-      <span>لوحة المراجعة</span>
-      <span id="orderCounter">0 طلب جديد</span>
-    </div>
-  </header>
+      <div class="meta-row">
+        <span class="pill info">مزامنة محلية + تصدير JSON</span>
+        <span class="pill success" id="orderCounter">0 طلب جديد</span>
+      </div>
+    </header>
 
-  <div class="nav-tabs">
-    <button class="nav-btn active" data-target="companies">الشركات</button>
-    <button class="nav-btn" data-target="packages">الباقات</button>
-    <button class="nav-btn" data-target="details">مواصفات الباقة</button>
-    <button class="nav-btn" data-target="purchase">صفحة الشراء</button>
-    <button class="nav-btn" data-target="admin">لوحة التحكم</button>
+    <div class="nav-tabs">
+      <button class="nav-btn active" data-target="companies">الشركات</button>
+      <button class="nav-btn" data-target="packages">الباقات</button>
+      <button class="nav-btn" data-target="details">مواصفات</button>
+      <button class="nav-btn" data-target="purchase">شراء</button>
+      <button class="nav-btn" data-target="admin">لوحة التحكم</button>
+    </div>
+  </section>
+
+    <section id="companies" class="section active">
+      <div class="section-title">الشركات المتاحة</div>
+      <div id="companyList" class="grid"></div>
+    </section>
+
+    <section id="packages" class="section">
+      <div class="card">
+        <div class="section-title">تصفية الباقات</div>
+        <input id="packageSearch" placeholder="ابحث باسم الباقة" />
+        <div class="chips" id="companyFilters"></div>
+      </div>
+      <div id="packageList" class="grid"></div>
+    </section>
+
+    <section id="details" class="section">
+      <div id="packageDetails" class="card">
+        <h3>اختر باقة</h3>
+        <p class="subtext">من فضلك اختر باقة لعرض التفاصيل.</p>
+      </div>
+    </section>
+
+    <section id="purchase" class="section">
+      <div id="purchasePane" class="card">
+        <h3>اختر باقة للمتابعة</h3>
+        <p class="subtext">يرجى اختيار الباقة من قسم الباقات.</p>
+      </div>
+    </section>
+
+    <section id="admin" class="section">
+      <div class="card">
+        <div class="section-title">مراجعة الطلبات</div>
+        <p class="subtext">عرض التحويلات والصور المرفقة وتحديث الحالة.</p>
+        <div id="ordersTableWrapper" class="divider"></div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">إدارة البيانات (استيراد/تصدير JSON)</div>
+        <p class="subtext">انسخ بيانات الملفات المرفقة وضعها هنا ثم اضغط استيراد.</p>
+        <textarea id="jsonImport" placeholder='{"companies":[],"packages":[],"orders":[]}'></textarea>
+        <div class="meta-row">
+          <button class="btn inline" onclick="importJson()">استيراد</button>
+          <button class="btn inline secondary" onclick="exportJson()">تصدير</button>
+          <button class="btn inline secondary" onclick="clearLocal()">إعادة ضبط</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">إضافة شركة</div>
+        <input id="newCompanyName" placeholder="اسم الشركة" />
+        <input id="newCompanyColor" placeholder="#D9121F" />
+        <input id="newCompanyPay" placeholder="رقم التحويل / السداد" />
+        <select id="newCompanyAuth">
+          <option value="false">لا تحتاج كلمة مرور</option>
+          <option value="true">تحتاج كلمة مرور (فودافون)</option>
+        </select>
+        <button class="btn" onclick="addCompany()">إضافة</button>
+      </div>
+
+      <div class="card">
+        <div class="section-title">إضافة باقة</div>
+        <select id="pkgCompany"></select>
+        <input id="pkgName" placeholder="اسم / كود الباقة" />
+        <input id="pkgPrice" type="number" placeholder="السعر بالجنيه" />
+        <input id="pkgData" placeholder="الوحدات / الجيجا" />
+        <input id="pkgValidity" type="number" placeholder="الصلاحية بالأيام" />
+        <input id="pkgReqs" placeholder="المتطلبات، مفصولة بفاصلة" />
+        <select id="pkgOffer">
+          <option value="false">باقة عادية</option>
+          <option value="true">عرض مميز</option>
+        </select>
+        <button class="btn" onclick="addPackage()">إضافة الباقة</button>
+      </div>
+    </section>
   </div>
 
-  <section id="companies" class="section active">
-    <div class="section-title">الشركات المتاحة</div>
-    <div class="grid cols-3" id="companyGrid"></div>
-  </section>
-
-  <section id="packages" class="section">
-    <div class="section-title">اختر الشركة ثم استعرض الباقات</div>
-    <div class="card">
-      <label>ابحث عن باقة</label>
-      <input class="input" id="packageSearch" placeholder="مثال: فليكس، ميكس، دقائق" />
-      <div class="chips" id="companyFilters"></div>
-    </div>
-    <div class="grid cols-3" id="packageGrid" style="margin-top: 12px;"></div>
-  </section>
-
-  <section id="details" class="section">
-    <div id="packageDetails" class="card">
-      <h3>لم يتم اختيار باقة بعد</h3>
-      <p class="subtext">اختر باقة من تبويب "الباقات" للاطلاع على تفاصيلها.</p>
-    </div>
-  </section>
-
-  <section id="purchase" class="section">
-    <div id="purchasePane" class="card">
-      <h3>اختر باقة للمتابعة</h3>
-      <p class="subtext">من فضلك اختر باقة أولاً حتى نعرض طريقة الشراء الصحيحة.</p>
-    </div>
-  </section>
-
-  <section id="admin" class="section">
-    <div class="grid">
-      <div class="card">
-        <div class="flex-row" style="justify-content: space-between; align-items: center;">
-          <div>
-            <h3>مراجعة الطلبات</h3>
-            <p class="subtext">إدارة الطلبات الواردة وتحديث الحالة أو إضافة ملاحظات.</p>
-          </div>
-          <div class="badge">يتم الحفظ في المتصفح (LocalStorage)</div>
-        </div>
-        <div class="divider"></div>
-        <div id="ordersTableWrapper"></div>
-      </div>
-
-      <div class="card">
-        <h3>إضافة شركة</h3>
-        <label>اسم الشركة</label>
-        <input class="input" id="newCompanyName" placeholder="مثال: Vodafone" />
-        <label>لون الهوية (Hex)</label>
-        <input class="input" id="newCompanyColor" placeholder="#D9121F" />
-        <label>رقم التحويل / السداد</label>
-        <input class="input" id="newCompanyPay" placeholder="1055047192" />
-        <label>تحتاج كلمة مرور؟ (لفودافون)</label>
-        <select class="input" id="newCompanyAuth">
-          <option value="false">لا</option>
-          <option value="true">نعم</option>
-        </select>
-        <button class="btn" style="margin-top: 12px; width: 100%;" onclick="addCompany()">إضافة الشركة</button>
-      </div>
-
-      <div class="card">
-        <h3>إضافة باقة</h3>
-        <label>الشركة</label>
-        <select class="input" id="pkgCompany"></select>
-        <label>اسم / كود الباقة</label>
-        <input class="input" id="pkgName" placeholder="15600 Flex" />
-        <label>السعر (جنيه)</label>
-        <input type="number" class="input" id="pkgPrice" placeholder="250" />
-        <label>البيانات/الوحدات</label>
-        <input class="input" id="pkgData" placeholder="15600Flex + 5000 ميجا" />
-        <label>الصلاحية (أيام)</label>
-        <input type="number" class="input" id="pkgValidity" placeholder="28" />
-        <label>المتطلبات</label>
-        <input class="input" id="pkgReqs" placeholder="نظام فليكس، الدفع مسبقاً..." />
-        <label>عرض مميز؟</label>
-        <select class="input" id="pkgOffer">
-          <option value="false">لا</option>
-          <option value="true">نعم</option>
-        </select>
-        <button class="btn" style="margin-top: 12px; width: 100%;" onclick="addPackage()">إضافة الباقة</button>
-      </div>
-    </div>
-  </section>
-
   <div class="floating-action">
-    <a class="btn secondary" href="https://wa.me/966552918777" target="_blank">تواصل واتساب</a>
-    <a class="btn secondary" href="https://www.instagram.com/libra_necklace" target="_blank">Instagram</a>
+    <a class="btn secondary" href="https://wa.me/966552918777" target="_blank">واتساب</a>
+    <a class="btn secondary" href="https://t.me/libranecklace" target="_blank">تليجرام</a>
   </div>
 
   <script>
-    const STORAGE_KEYS = {
-      companies: 'ln-companies',
-      packages: 'ln-packages',
-      orders: 'ln-orders'
-    };
+    const STORAGE_KEYS = { companies: 'ln-companies', packages: 'ln-packages', orders: 'ln-orders' };
 
     const defaultCompanies = [
-      { id: 'vodafone', name: 'Vodafone مصر', color: '#c8102e', pay: '1055047192', requiresPassword: true, note: 'تأكيد الرقم وكلمة المرور قبل التفعيل', badge: 'فليكس' },
-      { id: 'orange', name: 'Orange', color: '#ff7900', pay: '1055047192', requiresPassword: false, note: 'تفعيل خلال 24 ساعة', badge: 'عروض شهرية' },
-      { id: 'etisalat', name: 'اتصالات مصر', color: '#00a85a', pay: '1055047192', requiresPassword: false, note: 'مكالمات + نت', badge: 'Mix' },
-      { id: 'we', name: 'WE', color: '#7b2cbf', pay: '1055047192', requiresPassword: false, note: 'عروض ترفيهية ونت', badge: 'عرض حالي' }
+      { id: 'vodafone', name: 'Vodafone مصر', color: '#e60000', pay: '1055047192', requiresPassword: true, note: 'يحتاج رقم الخط وكلمة المرور' },
+      { id: 'orange', name: 'Orange', color: '#ff7900', pay: '1055047192', requiresPassword: false, note: 'الدفع كود تحويل' },
+      { id: 'etisalat', name: 'Etisalat', color: '#4caf50', pay: '1055047192', requiresPassword: false, note: 'تحويل رصيد مع الكود' },
+      { id: 'we', name: 'We Telecom', color: '#5b2c83', pay: '1055047192', requiresPassword: false, note: 'باقة نت ودقائق' }
     ];
 
     const defaultPackages = [
-      { id: 'voda-flex-15600', companyId: 'vodafone', name: '15600 فليكس + 5000 ميجا فيس', price: 250, data: '15600Flex + 5000MB', validity: 30, requirements: ['لازم تكون نظام فليكس 260+ يدخل التقديم', 'الباقة هتتفعل خلال 24 ساعة من التحويل'], offer: true, bestFor: 'استخدام مكثف للسوشيال' },
-      { id: 'voda-flex-19500', companyId: 'vodafone', name: '19500 فليكس + 5000 ميجا فيس', price: 270, data: '19500Flex + 5000MB', validity: 30, requirements: ['لازم تكون نظام فليكس 260+ يدخل التقديم', 'التجديد الشهري التلقائي متاح'], offer: false, bestFor: 'أقصى وحدات شهرية' },
-      { id: 'orange-max-6500', companyId: 'orange', name: '6500 ميكس', price: 80, data: '6500 Mix', validity: 28, requirements: ['متاح لكل خطوط اورنج MIX', 'الباقة تتجدد خلال 24 ساعة بعد الدفع'], offer: true, bestFor: 'مكالمات + نت' },
-      { id: 'orange-max-9500', companyId: 'orange', name: '9500 ميكس', price: 120, data: '9500 Mix', validity: 28, requirements: ['لازم رصيد كافي قبل التحويل', 'تأكيد التحويل بصورة'], offer: false, bestFor: 'أقوى قيمة' },
-      { id: 'eti-mix-3250', companyId: 'etisalat', name: '3250 ميكس "نت+مكالمات"', price: 50, data: '3250Mix', validity: 28, requirements: ['لازم تكون نظام 15 قرش', 'الخط مفعل عليه مستخدمات'], offer: false, bestFor: 'مكالمات اقتصادية' },
-      { id: 'eti-mix-6500', companyId: 'etisalat', name: '6500 ميكس "نت+مكالمات"', price: 80, data: '6500Mix', validity: 28, requirements: ['لازم تكون نظام 15 قرش', 'تفعل خلال 24 ساعة'], offer: true, bestFor: 'باقة متوازنة' },
-      { id: 'we-super-120', companyId: 'we', name: 'WE Super 120', price: 120, data: '12000 وحدة + 6000 ميجا', validity: 30, requirements: ['متاحة لكل العملاء', 'إرسال صورة التحويل'], offer: true, bestFor: 'استخدام ثقيل' }
+      { id: 'vodafone-600flex', companyId: 'vodafone', name: 'Flex 600', price: 150, data: '600 فليكس + 3.5 جيجا', validity: 28, requirements: ['نظام فليكس'], offer: true },
+      { id: 'vodafone-1200flex', companyId: 'vodafone', name: 'Flex 1200', price: 250, data: '1200 فليكس + 7 جيجا', validity: 28, requirements: ['نظام فليكس'], offer: false },
+      { id: 'orange-mix700', companyId: 'orange', name: 'Mix 700', price: 160, data: '700 ميكس + 5 جيجا', validity: 30, requirements: ['نظام ميكس'], offer: true },
+      { id: 'orange-net40', companyId: 'orange', name: 'Net 40GB', price: 220, data: '40 جيجا', validity: 30, requirements: ['شحن مسبق'], offer: false },
+      { id: 'etisalat-connect45', companyId: 'etisalat', name: 'Connect 45GB', price: 230, data: '45 جيجا', validity: 30, requirements: ['كود *808#'], offer: false },
+      { id: 'etisalat-social', companyId: 'etisalat', name: 'Social + Video', price: 140, data: '25 جيجا + سوشيال', validity: 28, requirements: ['مسبق الدفع'], offer: true },
+      { id: 'we-mega65', companyId: 'we', name: 'Mega 65', price: 190, data: '65 جيجا', validity: 30, requirements: ['خط نت'], offer: false },
+      { id: 'we-mega120', companyId: 'we', name: 'Mega 120', price: 280, data: '120 جيجا', validity: 30, requirements: ['خط نت'], offer: true }
     ];
+
+    const defaultOrders = [];
+
+    const loadData = (key, fallback) => {
+      try {
+        const stored = localStorage.getItem(key);
+        return stored ? JSON.parse(stored) : JSON.parse(JSON.stringify(fallback));
+      } catch (e) {
+        return JSON.parse(JSON.stringify(fallback));
+      }
+    };
+
+    const persistData = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 
     let companies = loadData(STORAGE_KEYS.companies, defaultCompanies);
     let packages = loadData(STORAGE_KEYS.packages, defaultPackages);
-    let orders = loadData(STORAGE_KEYS.orders, []);
+    let orders = loadData(STORAGE_KEYS.orders, defaultOrders);
     let selectedPackage = null;
 
-    function loadData(key, fallback) {
-      try {
-        const saved = localStorage.getItem(key);
-        if (saved) return JSON.parse(saved);
-      } catch (e) {
-        console.warn('LocalStorage unavailable', e);
-      }
-      return JSON.parse(JSON.stringify(fallback));
+    function switchTab(target) {
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.target === target));
+      document.querySelectorAll('.section').forEach(sec => sec.classList.toggle('active', sec.id === target));
     }
 
-    function persistData(key, data) {
-      try {
-        localStorage.setItem(key, JSON.stringify(data));
-      } catch (e) {
-        console.warn('LocalStorage unavailable', e);
-      }
-    }
-
-    function setActiveSection(id) {
-      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.target === id));
-      document.querySelectorAll('.section').forEach(sec => sec.classList.toggle('active', sec.id === id));
-    }
-
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-      btn.addEventListener('click', () => setActiveSection(btn.dataset.target));
-    });
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.target)));
 
     function renderCompanies() {
-      const grid = document.getElementById('companyGrid');
-      grid.innerHTML = '';
-      companies.forEach(company => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="flex-row" style="justify-content: space-between; align-items: flex-start;">
-            <div class="flex-row">
-              <div class="company-logo" style="background:${company.color}; display:flex; align-items:center; justify-content:center; font-weight:900; color:#fff;">${company.name[0]}</div>
-              <div>
-                <h3>${company.name}</h3>
-                <p class="subtext">${company.note || 'عروض خاصة وتفعيل سريع'}</p>
-                <div class="chips">
-                  <span class="chip">تحويل: ${company.pay}</span>
-                  <span class="chip">${company.requiresPassword ? 'يتطلب كلمة مرور' : 'بدون كلمة مرور'}</span>
-                  ${company.badge ? `<span class="chip">${company.badge}</span>` : ''}
-                </div>
-              </div>
+      const list = document.getElementById('companyList');
+      list.innerHTML = companies.map(c => `
+        <div class="card company-card" style="border-color: ${c.color}33;">
+          <div class="company-row">
+            <div>
+              <div style="font-weight:700">${c.name}</div>
+              <div class="subtext">${c.note || ''}</div>
             </div>
-            <button class="btn secondary" onclick="filterByCompany('${company.id}')">استعراض الباقات</button>
-          </div>`;
-        grid.appendChild(card);
-      });
+            <span class="tag" style="background:${c.color}33; color:${c.color};">${c.pay}</span>
+          </div>
+          <div class="meta-row">
+            <span class="pill" style="color:${c.color}; border-color:${c.color}55; background:${c.color}11;">${c.requiresPassword ? 'يحتاج كلمة مرور' : 'تحويل كود فقط'}</span>
+          </div>
+        </div>
+      `).join('');
     }
 
     function renderFilters() {
-      const filters = document.getElementById('companyFilters');
-      filters.innerHTML = '';
-      const allBtn = document.createElement('button');
-      allBtn.className = 'chip';
-      allBtn.textContent = 'الكل';
-      allBtn.onclick = () => renderPackages();
-      filters.appendChild(allBtn);
-      companies.forEach(c => {
-        const btn = document.createElement('button');
-        btn.className = 'chip';
-        btn.textContent = c.name;
-        btn.onclick = () => filterByCompany(c.id);
-        filters.appendChild(btn);
+      const filterBox = document.getElementById('companyFilters');
+      filterBox.innerHTML = ['all', ...companies.map(c => c.id)].map(id => {
+        const label = id === 'all' ? 'الكل' : companies.find(c => c.id === id)?.name || '';
+        return `<div class="chip" data-id="${id}">${label}</div>`;
+      }).join('');
+      filterBox.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => {
+        filterBox.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        renderPackages();
+      }));
+      const first = filterBox.querySelector('.chip');
+      if (first) first.classList.add('active');
+    }
+
+    function renderPackages() {
+      const query = document.getElementById('packageSearch').value.toLowerCase();
+      const activeChip = document.querySelector('#companyFilters .chip.active');
+      const companyFilter = activeChip ? activeChip.dataset.id : 'all';
+      const list = document.getElementById('packageList');
+      const filtered = packages.filter(pkg => {
+        const byCompany = companyFilter === 'all' || pkg.companyId === companyFilter;
+        const bySearch = pkg.name.toLowerCase().includes(query) || pkg.data.toLowerCase().includes(query);
+        return byCompany && bySearch;
       });
-    }
 
-    function renderPackages(list = packages) {
-      const grid = document.getElementById('packageGrid');
-      const term = document.getElementById('packageSearch').value?.trim().toLowerCase();
-      grid.innerHTML = '';
-      list
-        .filter(pkg => !term || pkg.name.toLowerCase().includes(term) || pkg.data.toLowerCase().includes(term))
-        .forEach(pkg => {
-          const company = companies.find(c => c.id === pkg.companyId) || {};
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.innerHTML = `
-            <div class="flex-row" style="justify-content: space-between;">
+      list.innerHTML = filtered.map(pkg => {
+        const company = companies.find(c => c.id === pkg.companyId) || {};
+        return `
+          <div class="card package-card" style="border-color:${company.color || '#fff'}33;">
+            <div class="company-row">
               <div>
-                <h3>${pkg.name}</h3>
+                <div style="font-weight:700">${pkg.name}</div>
                 <div class="subtext">${company.name || ''}</div>
-                <div class="chips">
-                  <span class="chip">الصلاحية ${pkg.validity} يوم</span>
-                  <span class="chip">${pkg.data}</span>
-                  ${pkg.offer ? '<span class="tag">عرض خاص</span>' : ''}
-                </div>
               </div>
-              <div style="text-align: left;">
-                <div class="price">EGP ${pkg.price}</div>
-                <button class="btn" style="margin-top: 10px;" onclick="selectPackage('${pkg.id}')">تفاصيل</button>
-              </div>
-            </div>`;
-          grid.appendChild(card);
-        });
-    }
-
-    function filterByCompany(companyId) {
-      const filtered = packages.filter(pkg => pkg.companyId === companyId);
-      renderPackages(filtered);
-      setActiveSection('packages');
+              <span class="badge" style="background:${(company.color || '#fff')}22; color:${company.color || '#fff'};">${pkg.price} ج</span>
+            </div>
+            <div class="subtext">${pkg.data}</div>
+            <div class="meta-row">
+              <span class="pill">صلاحية ${pkg.validity} يوم</span>
+              ${pkg.offer ? '<span class="pill info">عرض مميز</span>' : ''}
+            </div>
+            <button class="btn" onclick="selectPackage('${pkg.id}')">اختيار</button>
+          </div>`;
+      }).join('') || '<p class="subtext">لا توجد باقات لهذا البحث.</p>';
     }
 
     function selectPackage(id) {
       selectedPackage = packages.find(p => p.id === id);
-      renderPackageDetails();
-      renderPurchasePane();
-      setActiveSection('details');
+      if (!selectedPackage) return;
+      switchTab('details');
+      renderDetails();
+      renderPurchase();
     }
 
-    function renderPackageDetails() {
-      const pane = document.getElementById('packageDetails');
+    function renderDetails() {
+      const box = document.getElementById('packageDetails');
       if (!selectedPackage) {
-        pane.innerHTML = '<h3>لم يتم اختيار باقة بعد</h3><p class="subtext">اختر باقة من تبويب "الباقات" للاطلاع على تفاصيلها.</p>';
+        box.innerHTML = '<h3>اختر باقة</h3><p class="subtext">لم يتم اختيار باقة بعد.</p>';
         return;
       }
       const company = companies.find(c => c.id === selectedPackage.companyId) || {};
-      pane.innerHTML = `
-        <div class="flex-row" style="justify-content: space-between;">
+      box.innerHTML = `
+        <div class="company-row">
           <div>
-            <h3>${selectedPackage.name}</h3>
+            <div style="font-weight:700">${selectedPackage.name}</div>
             <div class="subtext">${company.name || ''}</div>
           </div>
-          <div class="price">EGP ${selectedPackage.price}</div>
+          <span class="badge" style="background:${(company.color || '#fff')}22; color:${company.color || '#fff'};">${selectedPackage.price} ج</span>
         </div>
         <div class="divider"></div>
-        <div class="pill-section">
-          <span class="chip">الصلاحية ${selectedPackage.validity} يوم</span>
-          <span class="chip">${selectedPackage.data}</span>
-          <span class="chip">الأفضل لـ ${selectedPackage.bestFor || 'الاستخدام اليومي'}</span>
+        <div class="subtext">${selectedPackage.data}</div>
+        <div class="meta-row" style="margin:8px 0;">
+          <span class="pill">صلاحية ${selectedPackage.validity} يوم</span>
+          <span class="pill" style="color:${company.color}; border-color:${company.color}55; background:${company.color}11;">${company.requiresPassword ? 'رقم + كلمة مرور' : 'كود تحويل فقط'}</span>
         </div>
-        <div class="section-title">المتطلبات</div>
-        <ul style="list-style: none; color: var(--muted); line-height: 1.8;">
-          ${selectedPackage.requirements.map(r => `<li>✔️ ${r}</li>`).join('')}
-        </ul>
-        <button class="btn" style="margin-top: 12px;" onclick="setActiveSection('purchase')">متابعة الشراء</button>
+        <div class="chips">${selectedPackage.requirements.map(r => `<span class="chip active">${r}</span>`).join('')}</div>
       `;
     }
 
-    function renderPurchasePane() {
+    function renderPurchase() {
       const pane = document.getElementById('purchasePane');
       if (!selectedPackage) {
-        pane.innerHTML = '<h3>اختر باقة للمتابعة</h3><p class="subtext">من فضلك اختر باقة أولاً حتى نعرض طريقة الشراء الصحيحة.</p>';
+        pane.innerHTML = '<h3>اختر باقة</h3><p class="subtext">اختر باقة للمتابعة.</p>';
         return;
       }
       const company = companies.find(c => c.id === selectedPackage.companyId) || {};
-      const requiresPassword = !!company.requiresPassword;
       pane.innerHTML = `
-        <div class="flex-row" style="justify-content: space-between;">
+        <div class="company-row">
           <div>
-            <h3>شراء ${selectedPackage.name}</h3>
-            <p class="subtext">${company.name}</p>
+            <div style="font-weight:700">${selectedPackage.name}</div>
+            <div class="subtext">${company.name || ''}</div>
           </div>
-          <div>
-            <div class="price">EGP ${selectedPackage.price}</div>
-            <div class="subtext">تشمل الرسوم</div>
-          </div>
+          <span class="badge" style="background:${(company.color || '#fff')}22; color:${company.color || '#fff'};">${selectedPackage.price} ج</span>
         </div>
-        <div class="alert">${requiresPassword ? 'هذه الباقة تتطلب إدخال رقم الهاتف وكلمة مرور فودافون قبل التفعيل.' : 'تحتاج فقط إدخال رقم الهاتف وكود التحويل.'}</div>
-        <form onsubmit="submitOrder(event)">
-          <label>الاسم الكامل</label>
-          <input required class="input" id="buyerName" placeholder="أدخل الاسم" />
-          <label>رقم الهاتف</label>
-          <input required class="input" id="buyerPhone" placeholder="010xxxxxxxx" />
-          ${requiresPassword ? `
-          <label>كلمة المرور</label>
-          <input required class="input" id="buyerPassword" type="password" placeholder="كلمة مرور حساب فودافون" />
-          <label>تأكيد كلمة المرور</label>
-          <input required class="input" id="buyerPasswordConfirm" type="password" placeholder="أعد كتابة كلمة المرور" />` : ''}
-          ${!requiresPassword ? `
-          <label>كود التحويل</label>
-          <input required class="input" id="transferCode" placeholder="أدخل كود التحويل" />` : ''}
-          <label>ملاحظات (اختياري)</label>
-          <input class="input" id="buyerNote" placeholder="تفاصيل إضافية" />
-          <label>صورة الدفع (اختيار ملف)</label>
-          <input class="input" id="buyerImage" type="file" accept="image/*" />
-          <div class="copy-box">
-            <div>
-              <div>يرجى تحويل المبلغ وإرفاق الصورة</div>
-              <strong>${company.pay || '1055047192'}</strong>
-            </div>
-            <button type="button" class="btn secondary" onclick="copyPay('${company.pay || '1055047192'}')">نسخ</button>
-          </div>
-          <div class="divider"></div>
-          <label style="display:flex; align-items:center; gap:10px;">
-            <input type="checkbox" id="autoRenew" />
-            تفعيل التجديد الشهري التلقائي
-          </label>
-          <button class="btn" style="margin-top: 14px; width: 100%;">إرسال طلب الشراء</button>
+        <div class="divider"></div>
+        <form id="purchaseForm">
+          <input id="buyerName" placeholder="اسم العميل" required />
+          <input id="buyerPhone" placeholder="رقم الهاتف" required />
+          ${company.requiresPassword ? '<input id="buyerPassword" placeholder="كلمة المرور" required />' : '<input id="transferCode" placeholder="كود التحويل" required />'}
+          <textarea id="buyerNote" placeholder="ملاحظات إضافية"></textarea>
+          <label class="subtext">صورة التحويل / الشاشة</label>
+          <input id="buyerImage" type="file" accept="image/*" />
+          <label class="subtext"><input type="checkbox" id="autoRenew" /> تفعيل تلقائي عند الانتهاء</label>
+          <button class="btn" type="submit">إرسال الطلب</button>
         </form>
       `;
+      document.getElementById('purchaseForm').addEventListener('submit', submitOrder);
     }
 
-    function copyPay(value) {
-      navigator.clipboard?.writeText(value);
-      alert('تم نسخ رقم التحويل');
-    }
-
-    function submitOrder(e) {
+    async function submitOrder(e) {
       e.preventDefault();
-      if (!selectedPackage) return;
+      if (!selectedPackage) return alert('اختر الباقة أولاً');
       const company = companies.find(c => c.id === selectedPackage.companyId) || {};
-      const requiresPassword = !!company.requiresPassword;
       const name = document.getElementById('buyerName').value.trim();
       const phone = document.getElementById('buyerPhone').value.trim();
+      const password = document.getElementById('buyerPassword')?.value.trim();
+      const transferCode = document.getElementById('transferCode')?.value.trim();
       const note = document.getElementById('buyerNote').value.trim();
       const autoRenew = document.getElementById('autoRenew').checked;
-      let password = '', confirm = '', transferCode = '';
+      const file = document.getElementById('buyerImage').files[0];
 
-      if (requiresPassword) {
-        password = document.getElementById('buyerPassword').value;
-        confirm = document.getElementById('buyerPasswordConfirm').value;
-        if (password !== confirm) {
-          alert('كلمات المرور غير متطابقة');
-          return;
-        }
-      } else {
-        transferCode = document.getElementById('transferCode').value.trim();
+      if (!name || !phone || (company.requiresPassword && !password) || (!company.requiresPassword && !transferCode)) {
+        alert('يرجى استكمال البيانات المطلوبة');
+        return;
       }
 
-      const fileInput = document.getElementById('buyerImage');
-      const imageName = fileInput?.files?.[0]?.name || '';
+      const imageData = file ? await toBase64(file) : '';
 
       const order = {
         id: `ORD-${Date.now()}`,
@@ -722,11 +517,12 @@
         price: selectedPackage.price,
         name,
         phone,
-        password: requiresPassword ? password : undefined,
-        transferCode: !requiresPassword ? transferCode : undefined,
+        password: company.requiresPassword ? password : undefined,
+        transferCode: !company.requiresPassword ? transferCode : undefined,
         note,
         autoRenew,
-        imageName,
+        imageName: file?.name || '',
+        imageData,
         status: 'new',
         createdAt: new Date().toLocaleString('ar-EG')
       };
@@ -735,7 +531,7 @@
       persistData(STORAGE_KEYS.orders, orders);
       renderOrders();
       document.getElementById('orderCounter').textContent = `${orders.filter(o => o.status === 'new').length} طلب جديد`;
-      alert('تم إرسال الطلب بنجاح، سيتم التواصل معك لتأكيد الباقة.');
+      alert('تم إرسال الطلب بنجاح');
       e.target.reset();
     }
 
@@ -749,26 +545,23 @@
         <tr>
           <td>${order.id}<br><span class="subtext">${order.createdAt}</span></td>
           <td>${order.name}<br><span class="subtext">${order.phone}</span></td>
-          <td>${order.packageName}<br><span class="badge">EGP ${order.price}</span></td>
-          <td>${order.transferCode ? order.transferCode : '—'}<br>${order.imageName || ''}</td>
-          <td>${order.password ? 'تم استلام كلمة المرور' : 'بدون كلمة مرور'}</td>
+          <td>${order.packageName}<br><span class="badge">${order.price} ج</span></td>
+          <td>${order.transferCode || '—'}</td>
+          <td>${order.password ? 'كلمة مرور موجودة' : 'بدون كلمة مرور'}</td>
+          <td>${order.imageData ? `<img class="thumb" src="${order.imageData}" alt="تحويل" />` : 'بدون صورة'}</td>
           <td>
-            <select class="input" onchange="updateStatus('${order.id}', this.value)">
+            <select onchange="updateStatus('${order.id}', this.value)">
               <option value="new" ${order.status === 'new' ? 'selected' : ''}>جديد</option>
               <option value="progress" ${order.status === 'progress' ? 'selected' : ''}>قيد التنفيذ</option>
               <option value="done" ${order.status === 'done' ? 'selected' : ''}>تم</option>
             </select>
           </td>
-          <td><input class="input" value="${order.note || ''}" onchange="updateNote('${order.id}', this.value)" placeholder="ملاحظات" /></td>
+          <td><input value="${order.note || ''}" onchange="updateNote('${order.id}', this.value)" /></td>
         </tr>
       `).join('');
-
       wrapper.innerHTML = `<table class="table">
-        <thead>
-          <tr><th>#</th><th>العميل</th><th>الباقة</th><th>التحويل</th><th>بيانات خاصة</th><th>الحالة</th><th>ملاحظات</th></tr>
-        </thead>
-        <tbody>${rows}</tbody>
-      </table>`;
+        <thead><tr><th>#</th><th>العميل</th><th>الباقة</th><th>التحويل</th><th>الدخول</th><th>الصورة</th><th>الحالة</th><th>ملاحظات</th></tr></thead>
+        <tbody>${rows}</tbody></table>`;
     }
 
     function updateStatus(id, status) {
@@ -777,7 +570,6 @@
       order.status = status;
       persistData(STORAGE_KEYS.orders, orders);
       document.getElementById('orderCounter').textContent = `${orders.filter(o => o.status === 'new').length} طلب جديد`;
-      renderOrders();
     }
 
     function updateNote(id, note) {
@@ -792,9 +584,9 @@
       const color = document.getElementById('newCompanyColor').value.trim() || '#1f1f2e';
       const pay = document.getElementById('newCompanyPay').value.trim() || '1055047192';
       const requiresPassword = document.getElementById('newCompanyAuth').value === 'true';
-      if (!name) return alert('يرجى إدخال اسم الشركة');
+      if (!name) return alert('اكتب اسم الشركة');
       const id = name.toLowerCase().replace(/\s+/g, '-');
-      companies.push({ id, name, color, pay, requiresPassword, note: 'مضافة من خلال لوحة التحكم' });
+      companies.push({ id, name, color, pay, requiresPassword, note: 'أضيفت من لوحة التحكم' });
       persistData(STORAGE_KEYS.companies, companies);
       renderCompanies();
       renderFilters();
@@ -810,7 +602,7 @@
       const validity = Number(document.getElementById('pkgValidity').value || 30);
       const requirements = (document.getElementById('pkgReqs').value || '').split(',').map(s => s.trim()).filter(Boolean);
       const offer = document.getElementById('pkgOffer').value === 'true';
-      if (!name) return alert('يرجى إدخال اسم الباقة');
+      if (!name) return alert('اكتب اسم الباقة');
       const id = `${companyId}-${Date.now()}`;
       packages.unshift({ id, companyId, name, price, data, validity, requirements, offer });
       persistData(STORAGE_KEYS.packages, packages);
@@ -823,7 +615,65 @@
       select.innerHTML = companies.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
     }
 
-    document.getElementById('packageSearch').addEventListener('input', () => renderPackages());
+    function importJson() {
+      const text = document.getElementById('jsonImport').value.trim();
+      if (!text) return alert('ضع بيانات JSON أولاً');
+      try {
+        const parsed = JSON.parse(text);
+        companies = parsed.companies && Array.isArray(parsed.companies) ? parsed.companies : companies;
+        packages = parsed.packages && Array.isArray(parsed.packages) ? parsed.packages : packages;
+        orders = parsed.orders && Array.isArray(parsed.orders) ? parsed.orders : orders;
+        persistData(STORAGE_KEYS.companies, companies);
+        persistData(STORAGE_KEYS.packages, packages);
+        persistData(STORAGE_KEYS.orders, orders);
+        renderCompanies();
+        renderFilters();
+        renderPackages();
+        renderOrders();
+        populateCompanySelect();
+        alert('تم الاستيراد بنجاح');
+      } catch (e) {
+        alert('صيغة JSON غير صحيحة');
+      }
+    }
+
+    function exportJson() {
+      const data = { companies, packages, orders };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'libra-data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearLocal() {
+      if (!confirm('سيتم حذف البيانات المخزنة محلياً، هل أنت متأكد؟')) return;
+      localStorage.removeItem(STORAGE_KEYS.companies);
+      localStorage.removeItem(STORAGE_KEYS.packages);
+      localStorage.removeItem(STORAGE_KEYS.orders);
+      companies = JSON.parse(JSON.stringify(defaultCompanies));
+      packages = JSON.parse(JSON.stringify(defaultPackages));
+      orders = [];
+      renderCompanies();
+      renderFilters();
+      renderPackages();
+      renderOrders();
+      populateCompanySelect();
+      document.getElementById('orderCounter').textContent = '0 طلب جديد';
+    }
+
+    function toBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    document.getElementById('packageSearch').addEventListener('input', renderPackages);
 
     renderCompanies();
     renderFilters();
