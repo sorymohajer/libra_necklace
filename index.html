@@ -1,202 +1,836 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>قلادة الميزان — روابط فاخرة</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منصة باقات الانترنت - Libra Necklace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-dark: #0c0c0f;
+      --panel: #161620;
+      --panel-2: #1f1f2e;
+      --gold: #f8d470;
+      --gold-2: #f2b705;
+      --text: #e7e7ef;
+      --muted: #a8a8c4;
+      --success: #54d18f;
+      --danger: #ff7b7b;
+      --info: #73b8ff;
+      --card-radius: 20px;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-*{
-    margin:0; padding:0; box-sizing:border-box;
-}
-html, body{
-    overflow-x:hidden;
-}
+    body {
+      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(248, 212, 112, 0.05), transparent 25%),
+        radial-gradient(circle at 80% 10%, rgba(242, 183, 5, 0.07), transparent 20%),
+        #0a0a0e;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+    }
 
-/* خلفية ذهبية متحركة */
-body{
-    font-family:'Cairo', sans-serif;
-    background: radial-gradient(circle at center, #1a1a1a, #000);
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    text-align:center;
-    position:relative;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* طبقة الحركة الذهبية */
-.gold-smoke{
-    position:absolute;
-    width:200%;
-    height:200%;
-    background: url('https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/goldsmoke.gif');
-    background-size:cover;
-    opacity:0.25;
-    filter: blur(12px);
-    animation: slowMove 18s linear infinite;
-    top:-50%;
-    left:-50%;
-}
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
 
-@keyframes slowMove{
-    0%{ transform:scale(1) rotate(0deg); }
-    100%{ transform:scale(1.2) rotate(360deg); }
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-/* طبقة شفافة */
-.overlay{
-    width:100%;
-    min-height:100vh;
-    padding:40px 20px;
-    background:rgba(0,0,0,0.55);
-    display:flex;
-    justify-content:center;
-    position:relative;
-}
+    .brand img {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 2px solid rgba(248, 212, 112, 0.4);
+      box-shadow: 0 0 20px rgba(248, 212, 112, 0.3);
+    }
 
-/* الحاوية */
-.container{
-    width:100%;
-    max-width:420px;
-    position:relative;
-    z-index:2;
-}
+    .brand h1 {
+      font-size: 24px;
+      line-height: 1.3;
+    }
 
-/* اللوجو */
-.logo{
-    width:150px;
-    margin-top:25px;
-    filter: drop-shadow(0px 0px 10px rgba(255,215,0,0.55));
-    animation: fadeIn 1.2s ease;
-}
+    .pill {
+      padding: 10px 14px;
+      background: linear-gradient(135deg, rgba(248, 212, 112, 0.14), rgba(242, 183, 5, 0.18));
+      border: 1px solid rgba(248, 212, 112, 0.28);
+      border-radius: 14px;
+      color: var(--gold);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-/* النص */
-.title{
-    margin-top:12px;
-    font-size:30px;
-    font-weight:700;
-    background:linear-gradient(90deg, #fce7a4, #ffe8b9, #d8b568);
-    -webkit-background-clip:text;
-    color:transparent;
-    text-shadow:0px 0px 10px rgba(255,215,0,0.35);
-    animation: fadeIn 1.3s ease;
-}
+    .nav-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
 
-/* أيقونات السوشيال */
-.social-icons{
-    margin:25px 0 35px 0;
-    display:flex;
-    justify-content:center;
-    gap:22px;
-}
+    .nav-btn {
+      padding: 14px 16px;
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      color: var(--muted);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
 
-.social-icons img{
-    width:36px; height:36px;
-    filter: drop-shadow(0 0 8px rgba(255,215,0,0.4));
-    transition:0.3s;
-}
+    .nav-btn.active,
+    .nav-btn:hover {
+      background: linear-gradient(135deg, rgba(248, 212, 112, 0.18), rgba(242, 183, 5, 0.08));
+      color: var(--text);
+      border-color: rgba(248, 212, 112, 0.32);
+    }
 
-.social-icons img:hover{
-    transform:scale(1.22);
-}
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
 
-/* زر فاخر */
-.btn{
-    width:100%;
-    background:linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
-    padding:16px 22px;
-    border-radius:50px;
-    margin:14px 0;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    font-size:18px;
-    color:#f9e4b8;
-    border:1px solid rgba(255,215,120,0.35);
-    box-shadow:
-        inset 0 0 12px rgba(255,216,90,0.10),
-        0 0 14px rgba(255,215,0,0.28);
-    backdrop-filter: blur(6px);
-    transition:0.35s;
-}
+    .grid.cols-3 {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
 
-.btn:hover{
-    transform:translateY(-3px);
-    box-shadow:
-        inset 0 0 18px rgba(255,216,90,0.22),
-        0 0 22px rgba(255,215,0,0.55);
-}
+    .card {
+      background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+      border-radius: var(--card-radius);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
 
-.btn img{
-    width:28px; height:28px;
-}
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(248, 212, 112, 0.14), transparent 40%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
 
-a{ text-decoration:none; }
+    .card h3 {
+      margin-bottom: 8px;
+    }
 
-@keyframes fadeIn{
-    from{opacity:0;} to{opacity:1;}
-}
-</style>
+    .card p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(248, 212, 112, 0.14);
+      color: var(--gold);
+      border: 1px solid rgba(248, 212, 112, 0.24);
+      margin-left: 6px;
+    }
+
+    .company-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .flex-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      border: none;
+      outline: none;
+      background: linear-gradient(135deg, #f8d470, #f2b705);
+      color: #0b0b0f;
+      font-weight: 800;
+      padding: 12px 18px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: 0 10px 24px rgba(248, 212, 112, 0.25);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .pill-section {
+      display: inline-flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      margin: 18px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .subtext {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      color: var(--muted);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .status {
+      padding: 6px 10px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 8px;
+    }
+
+    .status.new { background: rgba(115, 184, 255, 0.12); color: var(--info); border: 1px solid rgba(115, 184, 255, 0.3);}    
+    .status.progress { background: rgba(248, 212, 112, 0.14); color: var(--gold); border: 1px solid rgba(248, 212, 112, 0.34);}    
+    .status.done { background: rgba(84, 209, 143, 0.14); color: var(--success); border: 1px solid rgba(84, 209, 143, 0.3);}    
+
+    .input {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      color: var(--text);
+    }
+
+    label { font-weight: 700; color: var(--muted); display: block; margin-top: 12px; }
+
+    .section {
+      display: none;
+    }
+
+    .section.active { display: block; }
+
+    .divider {
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+      margin: 16px 0;
+    }
+
+    .floating-action {
+      position: fixed;
+      bottom: 16px;
+      left: 16px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .copy-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px dashed rgba(248, 212, 112, 0.35);
+      color: var(--gold);
+      padding: 12px 14px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+
+    .table th, .table td {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 10px 8px;
+      text-align: right;
+      color: var(--muted);
+    }
+
+    .table th { color: var(--text); font-weight: 800; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 10px;
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .alert {
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(115, 184, 255, 0.12);
+      border: 1px solid rgba(115, 184, 255, 0.3);
+      color: var(--text);
+      margin-top: 10px;
+    }
+
+    @media (max-width: 720px) {
+      body { padding: 14px; }
+      header { flex-direction: column; align-items: flex-start; }
+      .brand { width: 100%; }
+    }
+  </style>
 </head>
-
 <body>
-
-<div class="gold-smoke"></div>
-
-<div class="overlay">
-<div class="container">
-
-    <!-- لوجو ذهبي -->
-    <img class="logo" src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/refs/heads/main/logo1.png">
-
-    <!-- عنوان ملكي -->
-    <div class="title">أهلاً بفخامتك...</div>
-
-    <!-- أيقونات -->
-    <div class="social-icons">
-        <a href="https://www.instagram.com/libra_necklace"><img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/insta-gold.png"></a>
-        <a href="https://www.snapchat.com/add/mwssqldlmyzn"><img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/snap-gold.png"></a>
-        <a href="https://www.tiktok.com/@libra_necklace"><img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/tiktok-gold.png"></a>
-        <a href="https://wa.me/966552918777"><img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/whatsapp-gold.png"></a>
+  <header>
+    <div class="brand">
+      <img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/logo1.png" alt="Libra Necklace" />
+      <div>
+        <h1>منصة باقات الإنترنت</h1>
+        <div class="pill">Flex Zone — عروض خاصة لكل الشركات</div>
+      </div>
     </div>
+    <div class="pill" style="background: rgba(84,209,143,0.18); border-color: rgba(84,209,143,0.4); color: var(--success);">
+      <span>لوحة المراجعة</span>
+      <span id="orderCounter">0 طلب جديد</span>
+    </div>
+  </header>
 
-    <!-- أزرار فاخرة -->
-    <a href="https://wa.me/966552918777">
-        <div class="btn">
-            <img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/whatsapp-gold.png">
-            <span>WhatsApp</span>
-            <span>›</span>
+  <div class="nav-tabs">
+    <button class="nav-btn active" data-target="companies">الشركات</button>
+    <button class="nav-btn" data-target="packages">الباقات</button>
+    <button class="nav-btn" data-target="details">مواصفات الباقة</button>
+    <button class="nav-btn" data-target="purchase">صفحة الشراء</button>
+    <button class="nav-btn" data-target="admin">لوحة التحكم</button>
+  </div>
+
+  <section id="companies" class="section active">
+    <div class="section-title">الشركات المتاحة</div>
+    <div class="grid cols-3" id="companyGrid"></div>
+  </section>
+
+  <section id="packages" class="section">
+    <div class="section-title">اختر الشركة ثم استعرض الباقات</div>
+    <div class="card">
+      <label>ابحث عن باقة</label>
+      <input class="input" id="packageSearch" placeholder="مثال: فليكس، ميكس، دقائق" />
+      <div class="chips" id="companyFilters"></div>
+    </div>
+    <div class="grid cols-3" id="packageGrid" style="margin-top: 12px;"></div>
+  </section>
+
+  <section id="details" class="section">
+    <div id="packageDetails" class="card">
+      <h3>لم يتم اختيار باقة بعد</h3>
+      <p class="subtext">اختر باقة من تبويب "الباقات" للاطلاع على تفاصيلها.</p>
+    </div>
+  </section>
+
+  <section id="purchase" class="section">
+    <div id="purchasePane" class="card">
+      <h3>اختر باقة للمتابعة</h3>
+      <p class="subtext">من فضلك اختر باقة أولاً حتى نعرض طريقة الشراء الصحيحة.</p>
+    </div>
+  </section>
+
+  <section id="admin" class="section">
+    <div class="grid">
+      <div class="card">
+        <div class="flex-row" style="justify-content: space-between; align-items: center;">
+          <div>
+            <h3>مراجعة الطلبات</h3>
+            <p class="subtext">إدارة الطلبات الواردة وتحديث الحالة أو إضافة ملاحظات.</p>
+          </div>
+          <div class="badge">يتم الحفظ في المتصفح (LocalStorage)</div>
         </div>
-    </a>
+        <div class="divider"></div>
+        <div id="ordersTableWrapper"></div>
+      </div>
 
-    <a href="https://www.snapchat.com/add/mwssqldlmyzn">
-        <div class="btn">
-            <img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/snap-gold.png">
-            <span>Snapchat</span>
-            <span>›</span>
+      <div class="card">
+        <h3>إضافة شركة</h3>
+        <label>اسم الشركة</label>
+        <input class="input" id="newCompanyName" placeholder="مثال: Vodafone" />
+        <label>لون الهوية (Hex)</label>
+        <input class="input" id="newCompanyColor" placeholder="#D9121F" />
+        <label>رقم التحويل / السداد</label>
+        <input class="input" id="newCompanyPay" placeholder="1055047192" />
+        <label>تحتاج كلمة مرور؟ (لفودافون)</label>
+        <select class="input" id="newCompanyAuth">
+          <option value="false">لا</option>
+          <option value="true">نعم</option>
+        </select>
+        <button class="btn" style="margin-top: 12px; width: 100%;" onclick="addCompany()">إضافة الشركة</button>
+      </div>
+
+      <div class="card">
+        <h3>إضافة باقة</h3>
+        <label>الشركة</label>
+        <select class="input" id="pkgCompany"></select>
+        <label>اسم / كود الباقة</label>
+        <input class="input" id="pkgName" placeholder="15600 Flex" />
+        <label>السعر (جنيه)</label>
+        <input type="number" class="input" id="pkgPrice" placeholder="250" />
+        <label>البيانات/الوحدات</label>
+        <input class="input" id="pkgData" placeholder="15600Flex + 5000 ميجا" />
+        <label>الصلاحية (أيام)</label>
+        <input type="number" class="input" id="pkgValidity" placeholder="28" />
+        <label>المتطلبات</label>
+        <input class="input" id="pkgReqs" placeholder="نظام فليكس، الدفع مسبقاً..." />
+        <label>عرض مميز؟</label>
+        <select class="input" id="pkgOffer">
+          <option value="false">لا</option>
+          <option value="true">نعم</option>
+        </select>
+        <button class="btn" style="margin-top: 12px; width: 100%;" onclick="addPackage()">إضافة الباقة</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="floating-action">
+    <a class="btn secondary" href="https://wa.me/966552918777" target="_blank">تواصل واتساب</a>
+    <a class="btn secondary" href="https://www.instagram.com/libra_necklace" target="_blank">Instagram</a>
+  </div>
+
+  <script>
+    const STORAGE_KEYS = {
+      companies: 'ln-companies',
+      packages: 'ln-packages',
+      orders: 'ln-orders'
+    };
+
+    const defaultCompanies = [
+      { id: 'vodafone', name: 'Vodafone مصر', color: '#c8102e', pay: '1055047192', requiresPassword: true, note: 'تأكيد الرقم وكلمة المرور قبل التفعيل', badge: 'فليكس' },
+      { id: 'orange', name: 'Orange', color: '#ff7900', pay: '1055047192', requiresPassword: false, note: 'تفعيل خلال 24 ساعة', badge: 'عروض شهرية' },
+      { id: 'etisalat', name: 'اتصالات مصر', color: '#00a85a', pay: '1055047192', requiresPassword: false, note: 'مكالمات + نت', badge: 'Mix' },
+      { id: 'we', name: 'WE', color: '#7b2cbf', pay: '1055047192', requiresPassword: false, note: 'عروض ترفيهية ونت', badge: 'عرض حالي' }
+    ];
+
+    const defaultPackages = [
+      { id: 'voda-flex-15600', companyId: 'vodafone', name: '15600 فليكس + 5000 ميجا فيس', price: 250, data: '15600Flex + 5000MB', validity: 30, requirements: ['لازم تكون نظام فليكس 260+ يدخل التقديم', 'الباقة هتتفعل خلال 24 ساعة من التحويل'], offer: true, bestFor: 'استخدام مكثف للسوشيال' },
+      { id: 'voda-flex-19500', companyId: 'vodafone', name: '19500 فليكس + 5000 ميجا فيس', price: 270, data: '19500Flex + 5000MB', validity: 30, requirements: ['لازم تكون نظام فليكس 260+ يدخل التقديم', 'التجديد الشهري التلقائي متاح'], offer: false, bestFor: 'أقصى وحدات شهرية' },
+      { id: 'orange-max-6500', companyId: 'orange', name: '6500 ميكس', price: 80, data: '6500 Mix', validity: 28, requirements: ['متاح لكل خطوط اورنج MIX', 'الباقة تتجدد خلال 24 ساعة بعد الدفع'], offer: true, bestFor: 'مكالمات + نت' },
+      { id: 'orange-max-9500', companyId: 'orange', name: '9500 ميكس', price: 120, data: '9500 Mix', validity: 28, requirements: ['لازم رصيد كافي قبل التحويل', 'تأكيد التحويل بصورة'], offer: false, bestFor: 'أقوى قيمة' },
+      { id: 'eti-mix-3250', companyId: 'etisalat', name: '3250 ميكس "نت+مكالمات"', price: 50, data: '3250Mix', validity: 28, requirements: ['لازم تكون نظام 15 قرش', 'الخط مفعل عليه مستخدمات'], offer: false, bestFor: 'مكالمات اقتصادية' },
+      { id: 'eti-mix-6500', companyId: 'etisalat', name: '6500 ميكس "نت+مكالمات"', price: 80, data: '6500Mix', validity: 28, requirements: ['لازم تكون نظام 15 قرش', 'تفعل خلال 24 ساعة'], offer: true, bestFor: 'باقة متوازنة' },
+      { id: 'we-super-120', companyId: 'we', name: 'WE Super 120', price: 120, data: '12000 وحدة + 6000 ميجا', validity: 30, requirements: ['متاحة لكل العملاء', 'إرسال صورة التحويل'], offer: true, bestFor: 'استخدام ثقيل' }
+    ];
+
+    let companies = loadData(STORAGE_KEYS.companies, defaultCompanies);
+    let packages = loadData(STORAGE_KEYS.packages, defaultPackages);
+    let orders = loadData(STORAGE_KEYS.orders, []);
+    let selectedPackage = null;
+
+    function loadData(key, fallback) {
+      try {
+        const saved = localStorage.getItem(key);
+        if (saved) return JSON.parse(saved);
+      } catch (e) {
+        console.warn('LocalStorage unavailable', e);
+      }
+      return JSON.parse(JSON.stringify(fallback));
+    }
+
+    function persistData(key, data) {
+      try {
+        localStorage.setItem(key, JSON.stringify(data));
+      } catch (e) {
+        console.warn('LocalStorage unavailable', e);
+      }
+    }
+
+    function setActiveSection(id) {
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.target === id));
+      document.querySelectorAll('.section').forEach(sec => sec.classList.toggle('active', sec.id === id));
+    }
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => setActiveSection(btn.dataset.target));
+    });
+
+    function renderCompanies() {
+      const grid = document.getElementById('companyGrid');
+      grid.innerHTML = '';
+      companies.forEach(company => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="flex-row" style="justify-content: space-between; align-items: flex-start;">
+            <div class="flex-row">
+              <div class="company-logo" style="background:${company.color}; display:flex; align-items:center; justify-content:center; font-weight:900; color:#fff;">${company.name[0]}</div>
+              <div>
+                <h3>${company.name}</h3>
+                <p class="subtext">${company.note || 'عروض خاصة وتفعيل سريع'}</p>
+                <div class="chips">
+                  <span class="chip">تحويل: ${company.pay}</span>
+                  <span class="chip">${company.requiresPassword ? 'يتطلب كلمة مرور' : 'بدون كلمة مرور'}</span>
+                  ${company.badge ? `<span class="chip">${company.badge}</span>` : ''}
+                </div>
+              </div>
+            </div>
+            <button class="btn secondary" onclick="filterByCompany('${company.id}')">استعراض الباقات</button>
+          </div>`;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderFilters() {
+      const filters = document.getElementById('companyFilters');
+      filters.innerHTML = '';
+      const allBtn = document.createElement('button');
+      allBtn.className = 'chip';
+      allBtn.textContent = 'الكل';
+      allBtn.onclick = () => renderPackages();
+      filters.appendChild(allBtn);
+      companies.forEach(c => {
+        const btn = document.createElement('button');
+        btn.className = 'chip';
+        btn.textContent = c.name;
+        btn.onclick = () => filterByCompany(c.id);
+        filters.appendChild(btn);
+      });
+    }
+
+    function renderPackages(list = packages) {
+      const grid = document.getElementById('packageGrid');
+      const term = document.getElementById('packageSearch').value?.trim().toLowerCase();
+      grid.innerHTML = '';
+      list
+        .filter(pkg => !term || pkg.name.toLowerCase().includes(term) || pkg.data.toLowerCase().includes(term))
+        .forEach(pkg => {
+          const company = companies.find(c => c.id === pkg.companyId) || {};
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <div class="flex-row" style="justify-content: space-between;">
+              <div>
+                <h3>${pkg.name}</h3>
+                <div class="subtext">${company.name || ''}</div>
+                <div class="chips">
+                  <span class="chip">الصلاحية ${pkg.validity} يوم</span>
+                  <span class="chip">${pkg.data}</span>
+                  ${pkg.offer ? '<span class="tag">عرض خاص</span>' : ''}
+                </div>
+              </div>
+              <div style="text-align: left;">
+                <div class="price">EGP ${pkg.price}</div>
+                <button class="btn" style="margin-top: 10px;" onclick="selectPackage('${pkg.id}')">تفاصيل</button>
+              </div>
+            </div>`;
+          grid.appendChild(card);
+        });
+    }
+
+    function filterByCompany(companyId) {
+      const filtered = packages.filter(pkg => pkg.companyId === companyId);
+      renderPackages(filtered);
+      setActiveSection('packages');
+    }
+
+    function selectPackage(id) {
+      selectedPackage = packages.find(p => p.id === id);
+      renderPackageDetails();
+      renderPurchasePane();
+      setActiveSection('details');
+    }
+
+    function renderPackageDetails() {
+      const pane = document.getElementById('packageDetails');
+      if (!selectedPackage) {
+        pane.innerHTML = '<h3>لم يتم اختيار باقة بعد</h3><p class="subtext">اختر باقة من تبويب "الباقات" للاطلاع على تفاصيلها.</p>';
+        return;
+      }
+      const company = companies.find(c => c.id === selectedPackage.companyId) || {};
+      pane.innerHTML = `
+        <div class="flex-row" style="justify-content: space-between;">
+          <div>
+            <h3>${selectedPackage.name}</h3>
+            <div class="subtext">${company.name || ''}</div>
+          </div>
+          <div class="price">EGP ${selectedPackage.price}</div>
         </div>
-    </a>
-
-    <a href="https://www.instagram.com/libra_necklace">
-        <div class="btn">
-            <img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/insta-gold.png">
-            <span>Instagram</span>
-            <span>›</span>
+        <div class="divider"></div>
+        <div class="pill-section">
+          <span class="chip">الصلاحية ${selectedPackage.validity} يوم</span>
+          <span class="chip">${selectedPackage.data}</span>
+          <span class="chip">الأفضل لـ ${selectedPackage.bestFor || 'الاستخدام اليومي'}</span>
         </div>
-    </a>
+        <div class="section-title">المتطلبات</div>
+        <ul style="list-style: none; color: var(--muted); line-height: 1.8;">
+          ${selectedPackage.requirements.map(r => `<li>✔️ ${r}</li>`).join('')}
+        </ul>
+        <button class="btn" style="margin-top: 12px;" onclick="setActiveSection('purchase')">متابعة الشراء</button>
+      `;
+    }
 
-    <a href="https://www.tiktok.com/@libra_necklace">
-        <div class="btn">
-            <img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/tiktok-gold.png">
-            <span>TikTok</span>
-            <span>›</span>
+    function renderPurchasePane() {
+      const pane = document.getElementById('purchasePane');
+      if (!selectedPackage) {
+        pane.innerHTML = '<h3>اختر باقة للمتابعة</h3><p class="subtext">من فضلك اختر باقة أولاً حتى نعرض طريقة الشراء الصحيحة.</p>';
+        return;
+      }
+      const company = companies.find(c => c.id === selectedPackage.companyId) || {};
+      const requiresPassword = !!company.requiresPassword;
+      pane.innerHTML = `
+        <div class="flex-row" style="justify-content: space-between;">
+          <div>
+            <h3>شراء ${selectedPackage.name}</h3>
+            <p class="subtext">${company.name}</p>
+          </div>
+          <div>
+            <div class="price">EGP ${selectedPackage.price}</div>
+            <div class="subtext">تشمل الرسوم</div>
+          </div>
         </div>
-    </a>
+        <div class="alert">${requiresPassword ? 'هذه الباقة تتطلب إدخال رقم الهاتف وكلمة مرور فودافون قبل التفعيل.' : 'تحتاج فقط إدخال رقم الهاتف وكود التحويل.'}</div>
+        <form onsubmit="submitOrder(event)">
+          <label>الاسم الكامل</label>
+          <input required class="input" id="buyerName" placeholder="أدخل الاسم" />
+          <label>رقم الهاتف</label>
+          <input required class="input" id="buyerPhone" placeholder="010xxxxxxxx" />
+          ${requiresPassword ? `
+          <label>كلمة المرور</label>
+          <input required class="input" id="buyerPassword" type="password" placeholder="كلمة مرور حساب فودافون" />
+          <label>تأكيد كلمة المرور</label>
+          <input required class="input" id="buyerPasswordConfirm" type="password" placeholder="أعد كتابة كلمة المرور" />` : ''}
+          ${!requiresPassword ? `
+          <label>كود التحويل</label>
+          <input required class="input" id="transferCode" placeholder="أدخل كود التحويل" />` : ''}
+          <label>ملاحظات (اختياري)</label>
+          <input class="input" id="buyerNote" placeholder="تفاصيل إضافية" />
+          <label>صورة الدفع (اختيار ملف)</label>
+          <input class="input" id="buyerImage" type="file" accept="image/*" />
+          <div class="copy-box">
+            <div>
+              <div>يرجى تحويل المبلغ وإرفاق الصورة</div>
+              <strong>${company.pay || '1055047192'}</strong>
+            </div>
+            <button type="button" class="btn secondary" onclick="copyPay('${company.pay || '1055047192'}')">نسخ</button>
+          </div>
+          <div class="divider"></div>
+          <label style="display:flex; align-items:center; gap:10px;">
+            <input type="checkbox" id="autoRenew" />
+            تفعيل التجديد الشهري التلقائي
+          </label>
+          <button class="btn" style="margin-top: 14px; width: 100%;">إرسال طلب الشراء</button>
+        </form>
+      `;
+    }
 
-</div>
-</div>
+    function copyPay(value) {
+      navigator.clipboard?.writeText(value);
+      alert('تم نسخ رقم التحويل');
+    }
 
+    function submitOrder(e) {
+      e.preventDefault();
+      if (!selectedPackage) return;
+      const company = companies.find(c => c.id === selectedPackage.companyId) || {};
+      const requiresPassword = !!company.requiresPassword;
+      const name = document.getElementById('buyerName').value.trim();
+      const phone = document.getElementById('buyerPhone').value.trim();
+      const note = document.getElementById('buyerNote').value.trim();
+      const autoRenew = document.getElementById('autoRenew').checked;
+      let password = '', confirm = '', transferCode = '';
+
+      if (requiresPassword) {
+        password = document.getElementById('buyerPassword').value;
+        confirm = document.getElementById('buyerPasswordConfirm').value;
+        if (password !== confirm) {
+          alert('كلمات المرور غير متطابقة');
+          return;
+        }
+      } else {
+        transferCode = document.getElementById('transferCode').value.trim();
+      }
+
+      const fileInput = document.getElementById('buyerImage');
+      const imageName = fileInput?.files?.[0]?.name || '';
+
+      const order = {
+        id: `ORD-${Date.now()}`,
+        packageId: selectedPackage.id,
+        companyId: selectedPackage.companyId,
+        packageName: selectedPackage.name,
+        price: selectedPackage.price,
+        name,
+        phone,
+        password: requiresPassword ? password : undefined,
+        transferCode: !requiresPassword ? transferCode : undefined,
+        note,
+        autoRenew,
+        imageName,
+        status: 'new',
+        createdAt: new Date().toLocaleString('ar-EG')
+      };
+
+      orders.unshift(order);
+      persistData(STORAGE_KEYS.orders, orders);
+      renderOrders();
+      document.getElementById('orderCounter').textContent = `${orders.filter(o => o.status === 'new').length} طلب جديد`;
+      alert('تم إرسال الطلب بنجاح، سيتم التواصل معك لتأكيد الباقة.');
+      e.target.reset();
+    }
+
+    function renderOrders() {
+      const wrapper = document.getElementById('ordersTableWrapper');
+      if (!orders.length) {
+        wrapper.innerHTML = '<p class="subtext">لا توجد طلبات بعد.</p>';
+        return;
+      }
+      const rows = orders.map(order => `
+        <tr>
+          <td>${order.id}<br><span class="subtext">${order.createdAt}</span></td>
+          <td>${order.name}<br><span class="subtext">${order.phone}</span></td>
+          <td>${order.packageName}<br><span class="badge">EGP ${order.price}</span></td>
+          <td>${order.transferCode ? order.transferCode : '—'}<br>${order.imageName || ''}</td>
+          <td>${order.password ? 'تم استلام كلمة المرور' : 'بدون كلمة مرور'}</td>
+          <td>
+            <select class="input" onchange="updateStatus('${order.id}', this.value)">
+              <option value="new" ${order.status === 'new' ? 'selected' : ''}>جديد</option>
+              <option value="progress" ${order.status === 'progress' ? 'selected' : ''}>قيد التنفيذ</option>
+              <option value="done" ${order.status === 'done' ? 'selected' : ''}>تم</option>
+            </select>
+          </td>
+          <td><input class="input" value="${order.note || ''}" onchange="updateNote('${order.id}', this.value)" placeholder="ملاحظات" /></td>
+        </tr>
+      `).join('');
+
+      wrapper.innerHTML = `<table class="table">
+        <thead>
+          <tr><th>#</th><th>العميل</th><th>الباقة</th><th>التحويل</th><th>بيانات خاصة</th><th>الحالة</th><th>ملاحظات</th></tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+    }
+
+    function updateStatus(id, status) {
+      const order = orders.find(o => o.id === id);
+      if (!order) return;
+      order.status = status;
+      persistData(STORAGE_KEYS.orders, orders);
+      document.getElementById('orderCounter').textContent = `${orders.filter(o => o.status === 'new').length} طلب جديد`;
+      renderOrders();
+    }
+
+    function updateNote(id, note) {
+      const order = orders.find(o => o.id === id);
+      if (!order) return;
+      order.note = note;
+      persistData(STORAGE_KEYS.orders, orders);
+    }
+
+    function addCompany() {
+      const name = document.getElementById('newCompanyName').value.trim();
+      const color = document.getElementById('newCompanyColor').value.trim() || '#1f1f2e';
+      const pay = document.getElementById('newCompanyPay').value.trim() || '1055047192';
+      const requiresPassword = document.getElementById('newCompanyAuth').value === 'true';
+      if (!name) return alert('يرجى إدخال اسم الشركة');
+      const id = name.toLowerCase().replace(/\s+/g, '-');
+      companies.push({ id, name, color, pay, requiresPassword, note: 'مضافة من خلال لوحة التحكم' });
+      persistData(STORAGE_KEYS.companies, companies);
+      renderCompanies();
+      renderFilters();
+      populateCompanySelect();
+      alert('تمت إضافة الشركة');
+    }
+
+    function addPackage() {
+      const companyId = document.getElementById('pkgCompany').value;
+      const name = document.getElementById('pkgName').value.trim();
+      const price = Number(document.getElementById('pkgPrice').value || 0);
+      const data = document.getElementById('pkgData').value.trim();
+      const validity = Number(document.getElementById('pkgValidity').value || 30);
+      const requirements = (document.getElementById('pkgReqs').value || '').split(',').map(s => s.trim()).filter(Boolean);
+      const offer = document.getElementById('pkgOffer').value === 'true';
+      if (!name) return alert('يرجى إدخال اسم الباقة');
+      const id = `${companyId}-${Date.now()}`;
+      packages.unshift({ id, companyId, name, price, data, validity, requirements, offer });
+      persistData(STORAGE_KEYS.packages, packages);
+      renderPackages();
+      alert('تمت إضافة الباقة');
+    }
+
+    function populateCompanySelect() {
+      const select = document.getElementById('pkgCompany');
+      select.innerHTML = companies.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+    }
+
+    document.getElementById('packageSearch').addEventListener('input', () => renderPackages());
+
+    renderCompanies();
+    renderFilters();
+    renderPackages();
+    renderOrders();
+    populateCompanySelect();
+    document.getElementById('orderCounter').textContent = `${orders.filter(o => o.status === 'new').length} طلب جديد`;
+  </script>
 </body>
 </html>
