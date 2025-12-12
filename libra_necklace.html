@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قلادة الميزان — روابط فاخرة</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+
+*{
+    margin:0; padding:0; box-sizing:border-box;
+}
+html, body{
+    overflow-x:hidden;
+}
+
+/* خلفية ذهبية متحركة */
+body{
+    font-family:'Cairo', sans-serif;
+    background: radial-gradient(circle at center, #1a1a1a, #000);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+}
+
+/* طبقة الحركة الذهبية */
+.gold-smoke{
+    position:absolute;
+    width:200%;
+    height:200%;
+    background: url('https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/goldsmoke.gif');
+    background-size:cover;
+    opacity:0.25;
+    filter: blur(12px);
+    animation: slowMove 18s linear infinite;
+    top:-50%;
+    left:-50%;
+}
+
+@keyframes slowMove{
+    0%{ transform:scale(1) rotate(0deg); }
+    100%{ transform:scale(1.2) rotate(360deg); }
+}
+
+/* طبقة شفافة */
+.overlay{
+    width:100%;
+    min-height:100vh;
+    padding:40px 20px;
+    background:rgba(0,0,0,0.55);
+    display:flex;
+    justify-content:center;
+    position:relative;
+}
+
+/* الحاوية */
+.container{
+    width:100%;
+    max-width:420px;
+    position:relative;
+    z-index:2;
+}
+
+/* اللوجو */
+.logo{
+    width:150px;
+    margin-top:25px;
+    filter: drop-shadow(0px 0px 10px rgba(255,215,0,0.55));
+    animation: fadeIn 1.2s ease;
+}
+
+/* النص */
+.title{
+    margin-top:12px;
+    font-size:30px;
+    font-weight:700;
+    background:linear-gradient(90deg, #fce7a4, #ffe8b9, #d8b568);
+    -webkit-background-clip:text;
+    color:transparent;
+    text-shadow:0px 0px 10px rgba(255,215,0,0.35);
+    animation: fadeIn 1.3s ease;
+}
+
+/* أيقونات السوشيال */
+.social-icons{
+    margin:25px 0 35px 0;
+    display:flex;
+    justify-content:center;
+    gap:22px;
+}
+
+.social-icons img{
+    width:36px; height:36px;
+    filter: drop-shadow(0 0 8px rgba(255,215,0,0.4));
+    transition:0.3s;
+}
+
+.social-icons img:hover{
+    transform:scale(1.22);
+}
+
+/* زر فاخر */
+.btn{
+    width:100%;
+    background:linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
+    padding:16px 22px;
+    border-radius:50px;
+    margin:14px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:18px;
+    color:#f9e4b8;
+    border:1px solid rgba(255,215,120,0.35);
+    box-shadow:
+        inset 0 0 12px rgba(255,216,90,0.10),
+        0 0 14px rgba(255,215,0,0.28);
+    backdrop-filter: blur(6px);
+    transition:0.35s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:
+        inset 0 0 18px rgba(255,216,90,0.22),
+        0 0 22px rgba(255,215,0,0.55);
+}
+
+.btn img{
+    width:28px; height:28px;
+}
+
+a{ text-decoration:none; }
+
+@keyframes fadeIn{
+    from{opacity:0;} to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="gold-smoke"></div>
+
+<div class="overlay">
+<div class="container">
+
+    <!-- لوجو ذهبي -->
+    <img class="logo" src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/refs/heads/main/logo1.png">
+
+    <!-- عنوان ملكي -->
+    <div class="title">أهلاً بفخامتك...</div>
+
+    <!-- أيقونات -->
+    <div class="social-icons">
+        <a href="https://www.instagram.com/libra_necklace"><img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/insta-gold.png"></a>
+        <a href="https://www.snapchat.com/add/mwssqldlmyzn"><img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/snap-gold.png"></a>
+        <a href="https://www.tiktok.com/@libra_necklace"><img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/tiktok-gold.png"></a>
+        <a href="https://wa.me/966552918777"><img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/whatsapp-gold.png"></a>
+    </div>
+
+    <!-- أزرار فاخرة -->
+    <a href="https://wa.me/966552918777">
+        <div class="btn">
+            <img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/whatsapp-gold.png">
+            <span>WhatsApp</span>
+            <span>›</span>
+        </div>
+    </a>
+
+    <a href="https://www.snapchat.com/add/mwssqldlmyzn">
+        <div class="btn">
+            <img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/snap-gold.png">
+            <span>Snapchat</span>
+            <span>›</span>
+        </div>
+    </a>
+
+    <a href="https://www.instagram.com/libra_necklace">
+        <div class="btn">
+            <img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/insta-gold.png">
+            <span>Instagram</span>
+            <span>›</span>
+        </div>
+    </a>
+
+    <a href="https://www.tiktok.com/@libra_necklace">
+        <div class="btn">
+            <img src="https://raw.githubusercontent.com/sorymohajer/mysociallinks/main/tiktok-gold.png">
+            <span>TikTok</span>
+            <span>›</span>
+        </div>
+    </a>
+
+</div>
+</div>
+
+</body>
+</html>
